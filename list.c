@@ -69,13 +69,15 @@ void * prevList(List * list) {
 }
 
 void pushFront(List * list, void * data) {
-    Node * n = createNode(data);
+    list->current = list->head;
+    pushCurrent(list,data);
+    /*Node * n = createNode(data);
     n->next = list->head; //Conectar el nodo a la lista.
     if (list->head != NULL) {
         list->head->prev = n; //Si hay elementos en la lista, conectar el primero al nodo nuevo.
     }
     list->head = n; //Declarar n como el nuevo head.
-    n->prev = NULL; //Declarar su puntero hacia el antecesor como NULL;
+    n->prev = NULL; //Declarar su puntero hacia el antecesor como NULL;*/
 }
 
 void pushBack(List * list, void * data) {
