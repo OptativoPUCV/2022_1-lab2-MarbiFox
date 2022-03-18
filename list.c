@@ -91,6 +91,9 @@ void pushCurrent(List * list, void * data) {
             list->current->next->prev = n; //Conectar el puntero prev del sucesor de current a n.
             n->next = list->current->next; //Conectar el n con su sucesor.
         }
+        else {
+            list->tail = n; //En caso de que el current sea el tail, sólo reemplazar tail con el nodo nuevo.
+        }
         list->current->next = n; //Conectar el nodo current al n.
     }
     list->current = n; //Declarar n como el nuevo current.
