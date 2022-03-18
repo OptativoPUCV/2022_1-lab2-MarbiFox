@@ -107,7 +107,23 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
-    return NULL;
+    if (list->current->prev != NULL) {
+        list->current->prev->next = list->current->next; //Conectar el antecesor de current al sucesor de current.
+    }
+    else {
+        list->head = list->current->next; //Dejar head como el sucesor de current.
+    }
+    if (list->current->next != NULL) {
+        list->current->next->prev = list->current->prev; //Conectar el sucesor de current con el antecesor de current.
+    }
+    else {
+        list->tail = list->current->prev; //Dejar tail como el antecesor de current.
+    }
+    void * datoEliminado = list->current->data; //Guardar el dato del nodo para retornar.
+    Node * nodoEliminado = list->current; //Guardar un puntero a la dirección del nodo a eliminar.
+    list->current = list->current->next; //Dejar apuntado el siguiente nodo.
+    free(nodoEliminado); //Borrar el nodo.
+    return datoEliminado; //Retornar el dato del nodo eliminado.
 }
 
 void cleanList(List * list) {
